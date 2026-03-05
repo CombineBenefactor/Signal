@@ -5,18 +5,18 @@ A simple module that allows you to create custom signals in Roblox. This is mean
 [Download here](https://github.com/CombineBenefactor/Signal/releases)
 
 ## Usage
-### Non-Module Based Usage:
+### Built In Functions
+Connect to a function
 ```luau
-local Signal = require(script.Signal) -- / YOU CAN ALSO DO require(130755412990963), NOTE THAT REQUIRE ONLY WORKS ON THE SERVER SIDE
-local OnDamage = Signal.new() -- / CREATE A NEW SIGNAL
-
--- / LATER ON, FOR EXAMPLE IF A PLAYER WAS KILLED
-OnDamage:Fire(ShootingPlayer, HitPlayer, Damage)
-
--- / CONNECT THE EVENT
-OnDamage:Connect(function(ShootingPlayer:Player, HitPlayer:Player|Model, Damage:number)
-	-- Do anything you want here
-end)
+Signal:Connect()
+```
+Connect to a function once
+```luau
+Signal:Once()
+```
+Wait until event is fired, returns fired args
+```luau
+Signal:Wait()
 ```
 
 ### Module Backend Usage:
