@@ -3,8 +3,9 @@ Signal.__index = Signal
 
 export type Signal = {
 	Connect: (Function:any) -> (),
+	Disconnect: () -> (),
 	Once: (Function:any) -> (),
-	Wait: () -> (any)
+	Wait: () -> (...any),
 }
 
 function Signal.new()
@@ -14,7 +15,7 @@ function Signal.new()
 	)
 end
 
-function Signal:Connect(Listener)
+function Signal:Connect(Listener:() -> ())
 	table.insert(self.Listeners, Listener)
 end
 
@@ -30,7 +31,7 @@ function Signal:Fire(...)
 	end
 end
 
-function Signal:Once(Listener)
+function Signal:Once(Listener:() -> ())
 	table.insert(self.OnceListeners, Listener)
 end
 
@@ -48,7 +49,6 @@ function Signal:Wait()
 end
 
 function Signal:Disconnect()
-	self.Listeners = nil
 	setmetatable(self, nil)
 end
 
