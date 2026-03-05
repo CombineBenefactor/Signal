@@ -1,6 +1,12 @@
 local Signal = {}
 Signal.__index = Signal
 
+export type Signal = {
+	Connect: (Function:any) -> (),
+	Once: (Function:any) -> (),
+	Wait: () -> (any)
+}
+
 function Signal.new()
 	return setmetatable(
 		{Listeners = {}, OnceListeners = {}},
